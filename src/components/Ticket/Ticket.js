@@ -21,8 +21,8 @@ const Ticket = ({ price, carrier, segments }) => {
   const toDuration = `${segments[0].duration}`;
   const fromDuration = `${segments[1].duration}`;
 
-  const toStopsCount = segments[0].stops.length + 1;
-  const fromStopsCount = segments[1].stops.length + 1;
+  const toStopsCount = segments[0].stops.length;
+  const fromStopsCount = segments[1].stops.length;
 
   const toStopsNumber = `${toStopsCount} stop${toStopsCount > 1 ? "s" : ""}`;
   const fromStopsNumber = `${fromStopsCount} stop${
@@ -34,17 +34,17 @@ const Ticket = ({ price, carrier, segments }) => {
 
   function getTime(date) {
     const time = date.match(/T(\d{2}):(\d{2})/);
-    return time[1] + "hr - " + time[2] + "min";
+    return time[1] + ":" + time[2];
   }
+
   function getArrivalTime(date, duration) {
     let time = new Date(date);
 
     time.setMinutes(time.getMinutes() + Number(duration));
 
     const arrival = time.toJSON().match(/T(\d{2}):(\d{2})/);
-    console.log(arrival, time);
 
-    return arrival[1] + "hr - " + arrival[2] + "min";
+    return arrival[1] + ":" + arrival[2];
   }
 
   function getStops(stops) {

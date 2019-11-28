@@ -1,0 +1,6 @@
+.SortTab {
+  width: 100%;
+  display: flex;
+  justify-content: stretch;
+  margin-bottom: 20px;
+}

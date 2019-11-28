@@ -1,8 +1,8 @@
 .Filter {
-  margin-bottom: 20px;
   padding: 10px 20px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .Filter:hover {

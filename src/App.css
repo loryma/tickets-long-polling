@@ -3,3 +3,16 @@
   max-width: 960px;
   margin: 0 auto;
 }
+
+.App__content {
+  width: 80%;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .App__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
