@@ -6,6 +6,11 @@ import TicketData from "../TicketData/TicketData";
 import classes from "./Ticket.module.css";
 
 const Ticket = ({ price, carrier, segments }) => {
+  console.log(price, typeof price);
+  const formattedPrice = price
+    .toString()
+    .replace(/^(\d{1,3})(\d{3})+/, "$1 $2");
+
   const toOrigDest = `${segments[0].origin} - ${segments[0].destination}`;
   const fromOrigDest = `${segments[1].origin} - ${segments[1].destination}`;
 
@@ -24,9 +29,9 @@ const Ticket = ({ price, carrier, segments }) => {
   const toStopsCount = segments[0].stops.length;
   const fromStopsCount = segments[1].stops.length;
 
-  const toStopsNumber = `${toStopsCount} stop${toStopsCount > 1 ? "s" : ""}`;
+  const toStopsNumber = `${toStopsCount} stop${toStopsCount !== 1 ? "s" : ""}`;
   const fromStopsNumber = `${fromStopsCount} stop${
-    fromStopsCount > 1 ? "s" : ""
+    fromStopsCount !== 1 ? "s" : ""
   }`;
 
   const toStops = getStops(segments[0].stops);
@@ -56,7 +61,7 @@ const Ticket = ({ price, carrier, segments }) => {
   return (
     <div className={classes.Ticket}>
       <div className={classes.Header}>
-        <Price price={price} />
+        <Price price={formattedPrice} />
         <Carrier carrier={carrier} />
       </div>
       <div className={classes.Content}>

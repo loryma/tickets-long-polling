@@ -6,7 +6,7 @@ const FiltersTab = ({ children }) => {
   return (
     <div className={classes.FiltersTab}>
       <h2 className={classes.Header}>Stops</h2>
-      {children}
+      <div className={classes.Content}>{children}</div>
     </div>
   );
 };

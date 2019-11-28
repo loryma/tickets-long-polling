@@ -11,14 +11,12 @@ import sortTickets from "./utilities/sortTickets";
 import FiltersTab from "./components/FiltersTab/FiltersTab";
 import SortTab from "./components/SortTab/SortTab";
 import TicketsMainTab from "./components/TicketsMainTab/TicketsMainTab";
+import TicketsList from "./components/TicketsList/TicketsList";
 
 import Sort from "./components/Sort/Sort";
+import Spinner from "./components/Spinner/Spinner";
 
 import "./App.css";
-
-const TicketsList = React.lazy(() =>
-  import("./components/TicketsList/TicketsList")
-);
 
 const FILTERS = [
   ["all", "all"],
@@ -105,6 +103,11 @@ function App() {
   const [filters, setFilters] = useState([]);
   const [sort, setSort] = useState(null);
 
+  useEffect(() => {
+    fetchSearchId();
+    console.log("called fetch");
+  }, []);
+
   const filteredTickets = filters.length
     ? filterTickets(tickets, filters)
     : tickets;
@@ -114,9 +117,9 @@ function App() {
   const onFilterChange = (filter, e) => {
     const added = e.target.checked;
     if (added) {
-      setFilters(state => [...filters, filter]);
+      setFilters(state => [...state, filter]);
     } else {
-      setFilters(state => [...filters].filter(f => f !== filter));
+      setFilters(state => [...state].filter(f => f !== filter));
     }
   };
 
@@ -133,15 +136,10 @@ function App() {
   ));
 
   const sortList = SORT_FILTERS.map(s => (
-    <Sort active={s === sort} onSortChange={onSortChange.bind(this, s)}>
+    <Sort key={s} active={s === sort} onSortChange={onSortChange.bind(this, s)}>
       {s}
     </Sort>
   ));
-
-  useEffect(() => {
-    fetchSearchId();
-    console.log("called fetch");
-  }, []);
 
   async function fetchSearchId() {
     const { data } = await axios("https://front-test.beta.aviasales.ru/search");
@@ -151,6 +149,7 @@ function App() {
   }
   async function fetchTickets(id) {
     try {
+      // await new Promise((resolve, reject) => setTimeout(resolve, 4000));
       const res = await axios.get(
         `https://front-test.beta.aviasales.ru/tickets?searchId=${id}`
       );
@@ -166,7 +165,7 @@ function App() {
       }
     } catch (error) {
       console.log(error);
-      if (error.status == 500) {
+      if (error.status === 500) {
         setTimeout(async () => {
           await fetchTickets(id);
         }, 30);
@@ -184,9 +183,11 @@ function App() {
         <FiltersTab>{filterList}</FiltersTab>
         <TicketsMainTab>
           <SortTab>{sortList}</SortTab>
-          <Suspense fallback={<div>Loading...</div>}>
+          {sortedTickets && sortedTickets.length > 0 ? (
             <TicketsList tickets={sortedTickets} />
-          </Suspense>
+          ) : (
+            <Spinner />
+          )}
         </TicketsMainTab>
       </div>
     </div>

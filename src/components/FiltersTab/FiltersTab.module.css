@@ -5,6 +5,7 @@
   border-radius: 5px;
   padding: 20px 0;
   margin-bottom: 20px;
+  align-self: flex-start;
 }
 
 .Header {
@@ -17,8 +18,17 @@
   padding-bottom: 20px;
 }
 
+.Content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 @media (min-width: 768px) {
   .FiltersTab {
     width: 26.25%;
+  }
+
+  .Content {
+    display: block;
   }
 }

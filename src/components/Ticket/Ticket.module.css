@@ -11,6 +11,7 @@
   justify-content: space-between;
   margin-bottom: 20px;
   width: 100%;
+  display: flex;
 }
 
 .Content {
@@ -18,4 +19,12 @@
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 20px;
   row-gap: 10px;
+}
+
+@media (min-width: 768px) {
+  .Header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+  }
 }
