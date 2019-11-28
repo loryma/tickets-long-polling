@@ -158,17 +158,13 @@ function App() {
         dispatch({ type: "ADD_TICKETS", tickets: res.data.tickets });
 
         if (!res.data.stop) {
-          setTimeout(async () => {
-            await fetchTickets(id);
-          }, 30);
+          await fetchTickets(id);
         }
       }
     } catch (error) {
       console.log(error);
       if (error.status === 500) {
-        setTimeout(async () => {
-          await fetchTickets(id);
-        }, 30);
+        await fetchTickets(id);
       } else {
         setTimeout(async () => {
           await fetchTickets(id);
