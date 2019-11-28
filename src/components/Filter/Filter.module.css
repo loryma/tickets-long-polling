@@ -1,0 +1,22 @@
+.Filter {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+}
+
+.Filter:hover {
+  background: #f1fcff;
+}
+
+.Checkbox {
+  margin: 0;
+}
+
+.Text {
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--brown);
+  display: inline-block;
+  margin-left: 10px;
+}

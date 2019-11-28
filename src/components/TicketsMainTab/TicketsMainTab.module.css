@@ -1,0 +1,9 @@
+.TicketsMainTab {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .TicketsMainTab {
+    width: 52%;
+  }
+}

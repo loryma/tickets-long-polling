@@ -1,0 +1,5 @@
+.Price {
+  font-size: 24px;
+  color: var(--blue);
+  text-transform: uppercase;
+}
