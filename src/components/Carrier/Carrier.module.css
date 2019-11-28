@@ -1,0 +1,5 @@
+.Carrier {
+  height: 36px;
+  display: inline-block;
+  grid-area: 1/3/2/4;
+}

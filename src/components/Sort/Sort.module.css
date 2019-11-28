@@ -1,0 +1,21 @@
+.Sort {
+  flex-basis: 50%;
+  font-size: 12px;
+  line-height: 4.16em;
+  height: 4.16em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--brown);
+  background-color: white;
+  border: 1px solid #dfe5ec;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.Active {
+  background-color: var(--blue);
+  color: white;
+}

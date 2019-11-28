@@ -1,0 +1,50 @@
+.Filter {
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.Filter:hover {
+  background: #f1fcff;
+}
+
+.CheckboxWrapper {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--blue);
+}
+
+.Checkbox {
+  margin: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+  opacity: 0;
+}
+
+.Checkmark {
+  position: absolute;
+  display: inline-block;
+  height: 5px;
+  width: 10px;
+  border-left: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.Checkbox:checked ~ .Checkmark {
+  border-left-color: var(--blue);
+  border-bottom-color: var(--blue);
+}
+
+.Text {
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--brown);
+  display: inline-block;
+  margin-left: 10px;
+}
