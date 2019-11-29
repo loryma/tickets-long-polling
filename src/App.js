@@ -117,9 +117,24 @@ function App() {
   const onFilterChange = (filter, e) => {
     const added = e.target.checked;
     if (added) {
-      setFilters(state => [...state, filter]);
+      if (filter === "all") {
+        setFilters(state => [...FILTERS.map(([_, filter]) => filter)]);
+      } else {
+        const newFilters = [...filters, filter];
+        if (newFilters.length + 1 === FILTERS.length) {
+          setFilters(state => [...FILTERS.map(([_, filter]) => filter)]);
+        } else {
+          setFilters([...newFilters]);
+        }
+      }
     } else {
-      setFilters(state => [...state].filter(f => f !== filter));
+      if (filter === "all") {
+        setFilters(state => []);
+      } else {
+        setFilters(state =>
+          [...state].filter(f => f !== filter).filter(f => f !== "all")
+        );
+      }
     }
   };
 
@@ -131,6 +146,7 @@ function App() {
     <Filter
       key={text}
       text={text}
+      checked={filters.includes(value)}
       onChange={onFilterChange.bind(this, value)}
     />
   ));
